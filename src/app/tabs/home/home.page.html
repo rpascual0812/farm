@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="height: 350px;">
+        <app-home-slider></app-home-slider>
+    </div>
+    <div style="height: 350px; margin: 10px 0 0 0">
+        <app-article-slider></app-article-slider>
+    </div>
+    <div style="height: 230px; margin: 0 0 0 0">
+        <app-future-crops></app-future-crops>
+    </div>
+    <div style="height: 280px; margin: 0 0 0 0">
+        <app-looking-for></app-looking-for>
+    </div>
+
+    <ion-grid>
+        <ion-card-header>
+            <ion-grid style="width: 100%; padding: 0px !important;">
+                <ion-row>
+                    <ion-col style="height: 30px; padding: 20px 0 0 0 !important;">
+                        <ion-card-title style="color: black;">Products Post</ion-card-title>
+                    </ion-col>
+                    <ion-col size="auto" style="height: 30px;">
+                        <ion-list style="padding: 0 !important;">
+                            <ion-item>
+                                <ion-select aria-label="Fruit" interface="popover" placeholder="Sort by">
+                                    <ion-select-option [value]="sort"
+                                        *ngFor="let sort of sorter; let i = index;">{{sort}}</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-header>
+        <ion-row>
+            <ion-col col-6 *ngFor="let product of products; let i = index;">
+                <ion-card style="border-radius: 15px;">
+                    <ion-card-content class="fixline">
+                        <img [src]="product.image" style="width: 140px; height: 100px;" />
+                        <ion-card-title style="color: black; font-size: 15px;">{{product.name}}</ion-card-title>
+                        <ion-card-title class="title-primary">{{product.country.currency_symbol}}
+                            {{product.price_from}}</ion-card-title>
+                        <div>
+                            <ion-icon name="star" *ngFor="let i of [1,2,3,4,5]"
+                                [ngStyle]="{ 'color':getColor(i, product.rating)}"></ion-icon>
+                        </div>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-infinite-scroll threshold="50px" position="bottom" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <div style="width: 100%; height: 20px;"></div>
+</ion-content>

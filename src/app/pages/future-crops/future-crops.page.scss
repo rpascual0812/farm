@@ -1,0 +1,14 @@
+ion-col {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    text-align: left;
+    border: 0px !important;
+    // background-color: #135d54;
+    // border: solid 1px #fff;
+    // color: #fff;
+}
+
+ion-col.no-padding {
+    padding: 0px !important
+}

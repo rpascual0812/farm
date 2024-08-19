@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+    <!-- <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Search Results</ion-title>
+    </ion-navbar> -->
+    <ion-toolbar>
+        <ion-title>
+            <div class="hcs">
+                <img alt="logo" id="header_logo" height="40" src="{{api}}/assets/images/logo.png">
+                Lambo Mag-uuma
+            </div>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="bag-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button>
+                <ion-icon name="notifications-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    </ion-toolbar>
+</ion-header>

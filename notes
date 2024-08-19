@@ -1,0 +1,32 @@
+ionic generate 
+ionic generate page
+ionic generate page contact
+ionic generate component contact/form
+ionic generate component login-form --change-detection=OnPush
+ionic generate directive ripple --skip-import
+ionic generate service api/user
+
+# add android
+
+ionic cap add android
+
+# sync and buld
+
+ionic cap sync
+ionic cap build android
+
+# live reload
+
+ionic cap run android --external -livereload
+
+Izzy Google Map API: AIzaSyA9HzRiiZzdkxJAmRk0rqtJU4tu7d-bwiM
+
+# Get SHA-1 certificate fingerprint
+
+keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+SHA1: A8:18:60:E7:B4:CC:AD:2F:CC:11:80:98:71:8C:52:B7:C3:B5:AC:2B
+
+<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA9HzRiiZzdkxJAmRk0rqtJU4tu7d-bwiM" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-feature android:name="android.hardware.location.gps" />

@@ -1,0 +1,43 @@
+<ion-content>
+    <ion-card style="border-radius: 15px; margin-top: 1px !important;">
+        <ion-card-header>
+            <ion-card-title class="title-primary">Looking For</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content style="padding: 0 0 20px 0 !important">
+            <ion-grid class="ion-text-center">
+                <ion-row class="header-row">
+                    <ion-col>
+                        <ion-text style="font-weight: bold;">Name</ion-text>
+                    </ion-col>
+                    <ion-col>
+                        <ion-text style="font-weight: bold;">Product</ion-text>
+                    </ion-col>
+                    <ion-col>
+                        <ion-text style="font-weight: bold;">Quantity</ion-text>
+                    </ion-col>
+                    <ion-col>
+                        <ion-text style="font-weight: bold;">Date Posted</ion-text>
+                    </ion-col>
+                </ion-row>
+                <ion-row *ngFor="let lookingFor of lookingFors; let i = index" style="font-size: 12px;">
+                    <ion-col style="text-align: left; padding: 0 !important;">
+                        <ion-text>{{lookingFor.user.first_name}} {{lookingFor.user.last_name}}</ion-text>
+                    </ion-col>
+                    <ion-col style="text-align: left; padding: 0 !important;">
+                        <ion-text>{{lookingFor.name}}</ion-text>
+                    </ion-col>
+                    <ion-col style="text-align: left; padding: 0 !important;">
+                        <ion-text>{{lookingFor.quantity}} {{lookingFor.measurement.symbol}}</ion-text>
+                    </ion-col>
+                    <ion-col style="text-align: left; padding: 3 !important;">
+                        <ion-text>{{lookingFor.date_created | date : 'MMM dd, YYYY'}}</ion-text>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>
