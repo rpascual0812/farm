@@ -65,8 +65,6 @@ export class HomePage implements OnInit {
 
         const response: HttpResponse = await CapacitorHttp.get(options);
         response.data.data.forEach((product: any) => {
-            console.log(product);
-
             const image = product.product_documents.length > 0 ? product.product_documents.filter((doc: any) => doc.default)[0] : null;
             const rating = product.product_ratings.length > 0 ? product.product_ratings.reduce((accumulator: any, current: any) => accumulator + parseFloat(current.rating), 0) / product.product_ratings.length : 0;
 

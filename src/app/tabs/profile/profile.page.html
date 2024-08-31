@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+    <div class="profile">
+        <ion-grid>
+            <ion-row style="padding: 0 0 0 0;">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: white;">Back</ion-button>
+                </ion-col>
+                <ion-col></ion-col>
+                <ion-col size="auto">
+                    <ion-button size="small" fill="clear" color="light">
+                        <ion-icon slot="icon-only" name="create-outline"
+                            style="color: white; font-size: 25px;"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                    <ion-avatar style="width: 30px !important; height: 30px !important;">
+                        <img alt="Silhouette of a person's head" [src]="user.image"
+                            onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                    </ion-avatar>
+                </ion-col>
+                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                        <ion-row>
+                            <ion-col class="no-padding">
+                                {{user.name}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+    </div>
 </ion-content>

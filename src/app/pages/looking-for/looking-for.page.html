@@ -1,43 +1,87 @@
 <ion-content>
-    <ion-card style="border-radius: 15px; margin-top: 1px !important;">
-        <ion-card-header>
-            <ion-card-title class="title-primary">Looking For</ion-card-title>
-        </ion-card-header>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngFor="let product of products; let i = index;">
+                <ion-card style="border-radius: 15px;">
+                    <ion-card-content [ngStyle]="{ 'width' : '380px' }">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                                    <ion-avatar style="width: 30px !important; height: 30px !important;">
+                                        <img alt="Silhouette of a person's head" [src]="product.image"
+                                            onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                                    </ion-avatar>
+                                </ion-col>
+                                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                        <ion-row>
+                                            <ion-col class="no-padding">
+                                                {{product.seller_name}}
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="padding: 0 0 0 5px !important; text-align: left; font-size: 12px;">
+                                                {{product.date_created | date : 'MMM dd, YYYY'}}
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col style="padding: 0 !important;">
+                                                <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                                    <ion-row>
+                                                        <ion-col size="auto" class="no-padding">
+                                                            <ion-icon name="location-outline"></ion-icon>
+                                                        </ion-col>
+                                                        <ion-col class="no-padding"
+                                                            style="text-align: left; font-size: 12px;">
+                                                            {{product.address}}
+                                                        </ion-col>
+                                                    </ion-row>
+                                                </ion-grid>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                </ion-col>
+                                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                                    <ion-button size="small" fill="outline" color="success"
+                                        style="margin: 0 0 0 0 !important; ">
+                                        <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
+                                    </ion-button>
+                                </ion-col>
+                            </ion-row>
 
-        <ion-card-content style="padding: 0 0 20px 0 !important">
-            <ion-grid class="ion-text-center">
-                <ion-row class="header-row">
-                    <ion-col>
-                        <ion-text style="font-weight: bold;">Name</ion-text>
-                    </ion-col>
-                    <ion-col>
-                        <ion-text style="font-weight: bold;">Product</ion-text>
-                    </ion-col>
-                    <ion-col>
-                        <ion-text style="font-weight: bold;">Quantity</ion-text>
-                    </ion-col>
-                    <ion-col>
-                        <ion-text style="font-weight: bold;">Date Posted</ion-text>
-                    </ion-col>
-                </ion-row>
-                <ion-row *ngFor="let lookingFor of lookingFors; let i = index" style="font-size: 12px;">
-                    <ion-col style="text-align: left; padding: 0 !important;">
-                        <ion-text>{{lookingFor.user.first_name}} {{lookingFor.user.last_name}}</ion-text>
-                    </ion-col>
-                    <ion-col style="text-align: left; padding: 0 !important;">
-                        <ion-text>{{lookingFor.name}}</ion-text>
-                    </ion-col>
-                    <ion-col style="text-align: left; padding: 0 !important;">
-                        <ion-text>{{lookingFor.quantity}} {{lookingFor.measurement.symbol}}</ion-text>
-                    </ion-col>
-                    <ion-col style="text-align: left; padding: 3 !important;">
-                        <ion-text>{{lookingFor.date_created | date : 'MMM dd, YYYY'}}</ion-text>
-                    </ion-col>
-                </ion-row>
+                            <ion-row style="margin: 10px 0 0 0;">
+                                <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                    <ion-row style="padding: 0 !important;">
+                                        <ion-col size="auto" class="no-padding">
+                                            <span style="font-size: 20px; font-weight: bold;">{{product.name}}</span>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col size="auto" class="no-padding" style="font-size: 12px;">
+                                            <span style="font-weight: bold;">Quantity: </span>&nbsp;
+                                            {{product.quantity}}
+                                            {{product.measurement}}
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col size="auto" class="no-padding" style="font-size: 12px;">
+                                            <span style="font-weight: bold;">Estimated Date:</span>&nbsp;
+                                            {{product.date_available | date : 'MMM YYYY'}}
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-            </ion-grid>
-        </ion-card-content>
-    </ion-card>
+    <ion-infinite-scroll threshold="50px" position="bottom" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
-
+    <div style="width: 100%; height: 20px;"></div>
 </ion-content>

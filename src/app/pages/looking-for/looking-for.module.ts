@@ -9,13 +9,12 @@ import { LookingForPageRoutingModule } from './looking-for-routing.module';
 import { LookingForPage } from './looking-for.page';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        LookingForPageRoutingModule
-    ],
-    declarations: [LookingForPage],
-    exports: [LookingForPage]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    LookingForPageRoutingModule
+  ],
+  declarations: [LookingForPage]
 })
-export class LookingForPageModule { }
+export class LookingForPageModule {}

@@ -12,3 +12,23 @@ ion-col {
 ion-col.no-padding {
     padding: 0px !important
 }
+
+ion-button.button-default {
+    --background: #418949;
+    --background-hover: #254f2a;
+    --background-activated: #254f2a;
+    --background-focused: #254f2a;
+
+    --color: white;
+
+    --border-radius: 10px;
+
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+}
+
+ion-button.selected {
+    --background: #254f2a !important;
+}

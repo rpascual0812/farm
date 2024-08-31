@@ -1,6 +1,5 @@
 <ion-content scrollY="false">
-    <swiper-container (slidechange)="swiperSlideChanged($event)" [pagination]="false" [slidesPerView]="3"
-        [spaceBetween]="10">
+    <swiper-container [slidesPerView]="3" [spaceBetween]="10">
         <swiper-slide *ngFor="let article of articles" (click)="showModal(article)">
             <div>
                 <img [src]=" article.image" style="width: auto; height: 300px; background-size: cover;" />
