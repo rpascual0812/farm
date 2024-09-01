@@ -1,0 +1,53 @@
+{
+    "database": "lambo_farm_v2.db",
+    "version": 2,
+    "encrypted": false,
+    "mode": "full",
+    "tables": [
+        {
+            "name": "users",
+            "schema": [
+                {
+                    "column": "id",
+                    "value": "INTEGER NOT NULL PRIMARY KEY"
+                },
+                {
+                    "column": "access_token",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "username",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "first_name",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "middle_name",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "last_name",
+                    "value": "TEXT NOT NULL"
+                },
+                {
+                    "column": "role_pk",
+                    "value": "INTEGER NOT NULL"
+                },
+                {
+                    "column": "seller_pk",
+                    "value": "INTEGER NOT NULL"
+                },
+                {
+                    "column": "country_pk",
+                    "value": "INTEGER NOT NULL"
+                },
+                {
+                    "column": "expiration",
+                    "value": "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+                }
+            ]
+        }
+    ]
+}
