@@ -13,7 +13,11 @@
         </ion-tab-button>
 
         <ion-tab-button tab="profile" href="/tabs/profile">
-            <ion-icon aria-hidden="true" name="person-outline"></ion-icon>
+            <ion-avatar *ngIf="users.length > 0" style="width: 30px !important; height: 30px !important;">
+                <img alt="" [src]="users[0].image"
+                    onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+            </ion-avatar>
+            <ion-icon *ngIf="users.length == 0" aria-hidden="true" name="person-outline"></ion-icon>
         </ion-tab-button>
     </ion-tab-bar>
 </ion-tabs>

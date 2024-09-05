@@ -22,11 +22,10 @@ export class SqliteService {
         this.dbReady = new BehaviorSubject(false);
         this.isWeb = false;
         this.isIOS = false;
-        this.dbName = 'lambo_farm_v2.db';
+        this.dbName = 'lambo_farm_v4.db';
     }
 
     async init() {
-
         const info = await Device.getInfo();
         const sqlite = CapacitorSQLite as any;
 
@@ -48,7 +47,8 @@ export class SqliteService {
     }
 
     async setupDatabase() {
-        const dbSetup = await Preferences.get({ key: 'first_load' })
+        const dbSetup = await Preferences.get({ key: 'lambo_farm_v4' })
+        console.log('dbsetup', dbSetup);
         if (!dbSetup.value) {
             this.downloadDatabase();
         } else {
@@ -71,7 +71,7 @@ export class SqliteService {
                 await CapacitorSQLite.createConnection({ database: this.dbName });
                 await CapacitorSQLite.open({ database: this.dbName })
 
-                await Preferences.set({ key: 'first_load', value: '1' })
+                await Preferences.set({ key: 'lambo_farm_v4', value: '1' })
                 await Preferences.set({ key: 'dbname', value: this.dbName })
 
                 this.dbReady.next(true);
@@ -93,7 +93,7 @@ export class SqliteService {
     async create(user: SQLiteUser) {
         this.delete(user.username);
 
-        let sql = 'INSERT INTO users(access_token,country_pk,expiration,first_name,last_name,middle_name,role_pk,seller_pk,username) VALUES(?,?,?,?,?,?,?,?,?);';
+        let sql = 'INSERT INTO users(access_token,country_pk,expiration,first_name,last_name,middle_name,role_pk,seller_pk,username,image) VALUES(?,?,?,?,?,?,?,?,?,?);';
         const dbName = await this.getDbName();
         return CapacitorSQLite.executeSet({
             database: dbName,
@@ -109,7 +109,8 @@ export class SqliteService {
                         user.middle_name,
                         Number(user.role_pk),
                         Number(user.seller_pk),
-                        user.username
+                        user.username,
+                        user.image
                     ]
                 }
             ]
@@ -122,7 +123,7 @@ export class SqliteService {
     }
 
     async read() {
-        let sql = 'SELECT access_token, country_pk, expiration, first_name, last_name, middle_name, role_pk, seller_pk, username FROM users';
+        let sql = 'SELECT access_token, country_pk, expiration, first_name, last_name, middle_name, role_pk, seller_pk, username, image FROM users';
         const dbName = await this.getDbName();
         return CapacitorSQLite.query({
             database: dbName,

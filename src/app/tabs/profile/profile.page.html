@@ -2,7 +2,7 @@
 
 <ion-content>
     <div class="profile">
-        <ion-grid>
+        <ion-grid style="padding: 10px 0 !important;">
             <ion-row style="padding: 0 0 0 0;">
                 <ion-col size="auto" class="no-padding">
                     <ion-button fill="clear" style="color: white;">Back</ion-button>
@@ -15,24 +15,211 @@
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row class="text-white">
                 <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
-                    <ion-avatar style="width: 30px !important; height: 30px !important;">
+                    <ion-avatar style="width: 50px !important; height: 50px !important;">
                         <img alt="Silhouette of a person's head" [src]="user.image"
                             onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
                     </ion-avatar>
                 </ion-col>
-                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                <ion-col class="no-padding" style="padding: 0 0 0 5px !important; display: flex !important;">
                     <ion-grid style="margin: 0px !important; padding: 0px !important;">
                         <ion-row>
                             <ion-col class="no-padding">
-                                {{user.name}}
+                                {{user.first_name}} {{user.last_name}}
                             </ion-col>
                         </ion-row>
                     </ion-grid>
                 </ion-col>
-
+                <ion-col size="auto" class="no-padding gradient" style="padding: 0 5px !important;">
+                    <ion-grid style="margin: 0px !important; padding: 0px !important; text-align: center !important;">
+                        <ion-row>
+                            <ion-col class="no-padding" style="padding: 10px 5px !important;">
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        100
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        Following
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                            <ion-col class="no-padding" style="padding: 10px 5px !important;">
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        100
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        Followers
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+            <ion-row class="text-white">
+                <ion-col class="no-padding"
+                    style="padding: 0 0 0 5px !important; margin: 10px; background-color: rgba(0, 145, 74, 0.3);">
+                    <ion-grid style="margin: 0px !important; padding: 0px !important; text-align: center !important;">
+                        <ion-row>
+                            <ion-col class="no-padding" style="padding: 10px 5px !important;">
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        <ion-row>
+                                            <ion-col size="1" class="no-padding">
+                                                <ion-icon name="location"></ion-icon>
+                                            </ion-col>
+                                            <ion-col class="no-padding"
+                                                style="text-align: left; padding: 0 10px 0 0 !important;">
+                                                {{ user.address }}
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        <ion-row>
+                                            <ion-col size="1" class="no-padding">
+                                                <ion-icon name="call"></ion-icon>
+                                            </ion-col>
+                                            <ion-col class="no-padding" style="text-align: left;">
+                                                {{ user.mobile_number }}
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row style="margin: 10px 0 0 0;">
+                                    <ion-col class="no-padding">
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="text-align: left; padding: 0 10px 0 10px !important;">
+                                                About:
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col class="no-padding ion-text-justify"
+                                                style="text-align: left; padding: 0 10px 0 10px !important;">
+                                                {{ user.about }}
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
             </ion-row>
         </ion-grid>
+    </div>
+    <div style="background-color: #f5f5f5;">
+        <ion-grid style="padding: 10px 0 !important;">
+            <ion-row>
+                <ion-col class="no-padding" style="padding: 0 0 0 0 !important;">
+                    <ion-card style="border-radius: 15px;">
+                        <ion-card-content>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="padding: 0 0 0 5px !important;  text-align: center;">
+                                                <ion-icon name="cube-outline" size="large" style="zoom:3.0;"
+                                                    style="color: #008c49; zoom: 2.5;"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="color: #008c49; font-size: 16px; font-weight: bold; padding: 0 0 0 5px !important; text-align: center;">
+                                                My Product
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+                <ion-col class="no-padding" style="padding: 0 0 0 0 !important;">
+                    <ion-card style="border-radius: 15px;">
+                        <ion-card-content>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="padding: 0 0 0 5px !important; text-align: center;">
+                                                <ion-icon name="bag-handle-outline" size="large" style="zoom:3.0;"
+                                                    style="color: #008c49; zoom: 2.5;"></ion-icon>
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row>
+                                            <ion-col class="no-padding"
+                                                style="color: #008c49; font-size: 16px; font-weight: bold; padding: 0 0 0 5px !important; text-align: center;">
+                                                My Orders
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div>
+            <ion-list>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Post an Item You are Looking For
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Register as Producer
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Recently Viewed
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Frequently Asked Questions
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Chat with Moderator
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Give Us Feedback
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        File a Complaint
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Documentation
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Log out
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
     </div>
 </ion-content>

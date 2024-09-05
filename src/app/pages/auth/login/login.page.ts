@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from '../../../utilities/globals';
 import axios from 'axios';
-import { StorageService } from 'src/app/services/storage.service';
+
 import { Platform } from '@ionic/angular';
 import { Device } from '@capacitor/device';
+
 import { SqliteService } from 'src/app/services/sqlite.service';
 import { SQLiteUser } from 'src/app/interfaces/sqlite-user.interface';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -27,9 +29,9 @@ export class LoginPage implements OnInit {
     public users: SQLiteUser[];
 
     constructor(
+        private router: Router,
         private platform: Platform,
-        private sqliteService: SqliteService,
-        private storageService: StorageService,
+        private sqliteService: SqliteService
     ) {
         this.isWeb = false;
         this.load = false;
@@ -50,19 +52,12 @@ export class LoginPage implements OnInit {
 
             this.load = true;
 
-            this.SQLiteRead();
+            // bad but working for now
+            setTimeout(() => {
+                this.SQLiteRead();
+            }, 2000);
         });
-
-        // this.getStorage();
-
-
     }
-
-    // async getStorage() {
-    //     this.user = await this.storageService.get('user');
-    //     console.log('Logged user', this.user);
-    // }
-
 
     async login() {
         try {
@@ -79,9 +74,9 @@ export class LoginPage implements OnInit {
 
             if (response.status == 200) {
                 const user = response.data.user;
-
+                const image = user.user_document.filter((doc: any) => doc.type === 'profile_photo');
+                user.image = this.API + '/' + image[0].document.path;
                 this.SQLiteCreate(user);
-                // this.storageService.set('user', JSON.stringify(user));
             }
 
         } catch (error) {
@@ -101,21 +96,13 @@ export class LoginPage implements OnInit {
         // console.log(response);
     }
 
-    // addToStorage() {
-    //     this.storageService.set('user', "Rafael Pascual");
-    //     this.getStorage();
-    // }
-
-
-
-
-
-
-
     SQLiteCreate(user: SQLiteUser) {
         this.sqliteService.create(user).then((changes) => {
             this.user = '';
             this.SQLiteRead();
+
+            this.router.navigate(['/tabs/home'])
+
         }).catch(err => {
             console.error(err);
         })
@@ -124,34 +111,9 @@ export class LoginPage implements OnInit {
     SQLiteRead() {
         this.sqliteService.read().then((users: any) => {
             this.users = users;
+            console.log('users', users);
         }).catch(err => {
             console.error(err);
         })
     }
-
-    // update(user: string) {
-    //     // Actualizamos el elemento (user) por el nuevo elemento (this.user)
-    //     this.sqliteService.update(this.user.toUpperCase(), user).then((changes) => {
-    //         console.log(changes);
-    //         console.log("Actualizado");
-    //         this.user = '';
-    //         this.read(); // Volvemos a leer
-    //     }).catch(err => {
-    //         console.error(err);
-    //         console.error("Error al actualizar");
-    //     })
-    // }
-
-    // delete(user: string) {
-    //     // Borramos el elemento
-    //     this.sqliteService.delete(user).then((changes) => {
-    //         console.log(changes);
-    //         console.log("Borrado");
-    //         this.read(); // Volvemos a leer
-    //     }).catch(err => {
-    //         console.error(err);
-    //         console.error("Error al borrar");
-    //     })
-    // }
-
 }

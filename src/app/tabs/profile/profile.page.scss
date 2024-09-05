@@ -1,8 +1,8 @@
 ion-col {
-    display: flex;
+    display: block;
     align-items: center;
     // justify-content: center;
-    text-align: left;
+    // text-align: left;
     border: 0px !important;
     // background-color: #135d54;
     // border: solid 1px #fff;
@@ -14,5 +14,21 @@ ion-col.no-padding {
 }
 
 .profile {
-    background-color: #73b851;
+    background-color: #40bb51;
+}
+
+.text-white {
+    color: white;
+}
+
+.gradient {
+    background: linear-gradient(#40bb51, #199345);
+    background: linear-gradient(to left, #199345 25%, #40bb51);
+}
+
+ion-item {
+    padding: 0 !important;
+    box-shadow: 0 0 3px 0 #f5f5f5;
+    --box-shadow: 0 0 3px 0 #f5f5f5;
+    margin: 0 0 10px 0;
 }

@@ -8,4 +8,5 @@ export interface SQLiteUser {
     role_pk: number;
     seller_pk: number;
     username: string;
+    image: string;
 }
