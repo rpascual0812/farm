@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import * as _ from '../../utilities/globals';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-looking-for',
@@ -11,10 +12,16 @@ export class LookingForPage implements OnInit {
     API: string = _.API_URL;
     lookingFors: any = [];
 
-    constructor() { }
+    constructor(
+        private router: Router,
+    ) { }
 
     ngOnInit() {
         this.fetch();
+    }
+
+    goToLookingFor() {
+        this.router.navigate(['/tabs/products/looking_for']);
     }
 
     async fetch() {

@@ -12,6 +12,7 @@ import { HomeSliderPageModule } from 'src/app/components/home-slider/home-slider
 import { ArticleSliderPageModule } from 'src/app/components/article-slider/article-slider.module';
 import { FutureCropsPageModule } from 'src/app/components/future-crops/future-crops.module';
 import { LookingForPageModule } from 'src/app/components/looking-for/looking-for.module';
+import { RatingsModule } from 'src/app/components/ratings/ratings.module';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { LookingForPageModule } from 'src/app/components/looking-for/looking-for
         HomeSliderPageModule,
         ArticleSliderPageModule,
         FutureCropsPageModule,
-        LookingForPageModule
+        LookingForPageModule,
+        RatingsModule
     ],
     declarations: [HomePage]
 })

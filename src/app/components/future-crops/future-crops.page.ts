@@ -5,6 +5,7 @@ register();
 
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import * as _ from '../../utilities/globals';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-future-crops',
@@ -16,10 +17,16 @@ export class FutureCropsPage implements OnInit {
 
     products: any = [];
 
-    constructor() { }
+    constructor(
+        private router: Router,
+    ) { }
 
     ngOnInit() {
         this.fetch();
+    }
+
+    goToFutureCrops() {
+        this.router.navigate(['/tabs/products/future_crops']);
     }
 
     async fetch() {

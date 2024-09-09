@@ -5,7 +5,7 @@
         <ion-grid style="padding: 10px 0 !important;">
             <ion-row style="padding: 0 0 0 0;">
                 <ion-col size="auto" class="no-padding">
-                    <ion-button fill="clear" style="color: white;">Back</ion-button>
+                    <ion-button fill="clear" style="color: white;" (click)="back()">Back</ion-button>
                 </ion-col>
                 <ion-col></ion-col>
                 <ion-col size="auto">
@@ -222,4 +222,5 @@
             </ion-list>
         </div>
     </div>
+    <jeep-sqlite *ngIf="isWeb"></jeep-sqlite>
 </ion-content>

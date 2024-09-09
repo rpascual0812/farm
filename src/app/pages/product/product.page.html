@@ -1,0 +1,112 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="margin: 0 0 0 0;">
+        <ion-grid style="padding: 0 0 !important;">
+            <ion-row style="padding: 0 0 0 0;">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div>
+        <ion-card class="card-slider">
+            <swiper-container [pagination]="true">
+                <swiper-slide *ngFor="let slider of sliders">
+                    <img *ngIf="slider.image" [src]="slider.image" style="width: 430px; height: 350px;" />
+                </swiper-slide>
+            </swiper-container>
+        </ion-card>
+    </div>
+    <div style="margin: 20px 0 0 0;">
+        <ion-grid class="ion-text-center">
+            <ion-row class="header-row">
+                <ion-col style="text-align: left;">
+                    <ion-title style="font-weight: bold; color: black; padding: 10px 0 0 0;">Name</ion-title>
+                </ion-col>
+                <ion-col size="auto">
+                    <ion-button size="small" fill="outline" color="success" style="margin: 0 0 0 0 !important;">
+                        Buy Now
+                    </ion-button>
+                </ion-col>
+                <ion-col size="auto">
+                    <ion-button size="small" fill="solid" color="success" style="margin: 0 0 0 0 !important; ">
+                        Add to Cart
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row class="header-row">
+                <ion-col style="text-align: left;">
+                    <ion-title class="title-primary" style="font-size: 25px; padding: 0 0 0 0;">P
+                        100.00</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row class="header-row" style="margin: 10px 0 0 0;">
+                <ion-col style="text-align: left;" class="no-padding">
+                    <ion-title class="text-grey" style="font-size: 20px; padding: 0 0 0 0;">View
+                        Ratings</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row class="header-row">
+                <ion-col style="text-align: left;" class="no-padding">
+                    <app-ratings [rating]="3" [total]="265" [zoom]="2.0" [showTotal]="true"></app-ratings>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin: 10px 0 0 0;">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                            <ion-avatar style="width: 35px !important; height: 35px !important;">
+                                <img alt="" [src]="product.user_image"
+                                    onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                            <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                <ion-row>
+                                    <ion-col class="no-padding">
+                                        {{product.seller_name}}
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row class="no-padding">
+                                    <ion-col style="padding: 0 !important;">
+                                        <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                            <ion-row>
+                                                <ion-col size="auto" class="no-padding">
+                                                    <ion-icon name="location-outline"></ion-icon>
+                                                </ion-col>
+                                                <ion-col class="no-padding" style="text-align: left; font-size: 12px;">
+                                                    {{product.address}}
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                        <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="auto">
+                                        <ion-button size="small" fill="outline" color="success"
+                                            style="margin: 0 0 0 0 !important; ">
+                                            <ion-icon slot="icon-only" name="chatbubble-ellipses-outline"></ion-icon>
+                                        </ion-button>
+                                        <ion-button size="small" fill="outline" color="success"
+                                            style="margin: 0 0 0 5px !important; ">
+                                            View Shop
+                                        </ion-button>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-col>
+                    </ion-row>
+
+
+                </ion-grid>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

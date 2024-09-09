@@ -1,0 +1,5 @@
+<div class="vertical-align-content">
+    <ion-icon [style]="'zoom:' + zoom" name="star" *ngFor="let i of [1,2,3,4,5]"
+        [ngStyle]="{ 'color':setColor(i, rating)}"></ion-icon>
+    <span class="text-grey" style="font-size: 20px;" *ngIf="showTotal">({{total}})</span>
+</div>

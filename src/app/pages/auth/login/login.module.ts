@@ -10,7 +10,7 @@ import { LoginPage } from './login.page';
 import { HeaderModule } from 'src/app/components/header/header.module';
 
 import { defineCustomElements as jeepSqlite } from 'jeep-sqlite/loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 jeepSqlite(window);
 
@@ -20,8 +20,7 @@ jeepSqlite(window);
         FormsModule,
         IonicModule,
         LoginPageRoutingModule,
-        HeaderModule,
-        HttpClientModule
+        HeaderModule
     ],
     declarations: [LoginPage],
     schemas: [

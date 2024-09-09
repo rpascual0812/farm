@@ -24,7 +24,8 @@
                     <ion-col size="auto" style="height: 30px;">
                         <ion-list style="padding: 0 !important;">
                             <ion-item>
-                                <ion-select aria-label="Fruit" interface="popover" placeholder="Sort by">
+                                <ion-select [(ngModel)]="productsOrder" aria-label="Fruit" interface="popover"
+                                    placeholder="Sort by" (ionChange)="changeCategory()">
                                     <ion-select-option [value]="sort"
                                         *ngFor="let sort of sorter; let i = index;">{{sort}}</ion-select-option>
                                 </ion-select>
@@ -34,20 +35,27 @@
                 </ion-row>
             </ion-grid>
         </ion-card-header>
-        <ion-row>
-            <ion-col col-6 *ngFor="let product of products; let i = index;">
-                <ion-card style="border-radius: 15px;">
+
+        <ion-row *ngIf="products.length > 0">
+            <ion-col *ngFor="let product of products; let i = index;"
+                [style]="'width:' + ((screen.width - 85) / 2) + 'px'">
+                <ion-card style="border-radius: 15px; background-color: white;"
+                    [style]="'width:' + ((screen.width - 85) / 2) + 'px'" (click)="goToProduct(i)">
                     <ion-card-content class="fixline">
-                        <img [src]="product.image" style="width: 140px; height: 100px;" />
+                        <img [src]="product.image" style="width: 100%; height: 180px;" />
                         <ion-card-title style="color: black; font-size: 15px;">{{product.name}}</ion-card-title>
                         <ion-card-title class="title-primary">{{product.country.currency_symbol}}
                             {{product.price_from}}</ion-card-title>
                         <div>
-                            <ion-icon name="star" *ngFor="let i of [1,2,3,4,5]"
-                                [ngStyle]="{ 'color':getColor(i, product.rating)}"></ion-icon>
+                            <app-ratings [rating]="product.rating"></app-ratings>
                         </div>
                     </ion-card-content>
                 </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row style="margin: 50px 0 10px 0; color: #c0bbbb">
+            <ion-col size="12" class="ion-text-center">
+                <ion-title>No products found.</ion-title>
             </ion-col>
         </ion-row>
     </ion-grid>

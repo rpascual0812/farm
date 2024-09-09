@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as _ from '../../utilities/globals';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 enum COLORS {
     GREY = '#E0E0E0',
@@ -37,7 +39,22 @@ export class HomePage implements OnInit {
     skip: number = 0;
     take: number = 6;
 
-    constructor() { }
+    screen: any = {
+        width: 0,
+        height: 0
+    }
+
+    productsOrder: string = 'Newest';
+
+    constructor(
+        platform: Platform,
+        private router: Router,
+    ) {
+        platform.ready().then(() => {
+            this.screen.width = platform.width();
+            this.screen.height = platform.height();
+        });
+    }
 
     ngOnInit() {
         this.fetch();
@@ -51,12 +68,18 @@ export class HomePage implements OnInit {
         }, 500);
     }
 
+    changeCategory() {
+        this.skip = 0;
+        this.products = [];
+        this.fetch();
+    }
+
     async fetch() {
         const options = {
             url: this.API + '/products',
             params: {
                 'type': 'product,all',
-                // 'orderBy': filterValue,
+                'orderBy': this.productsOrder,
                 // 'categoryFilter': categoryFilterValue,
                 'skip': this.skip.toString(),
                 'take': this.take.toString(),
@@ -87,5 +110,9 @@ export class HomePage implements OnInit {
         else {
             return COLORS.GREY;
         }
+    }
+
+    goToProduct(i: number) {
+        this.router.navigate([`/product/${this.products[i].pk}`]);
     }
 }

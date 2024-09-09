@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 import * as _ from '../../utilities/globals';
 import { Platform } from '@ionic/angular';
@@ -12,7 +13,7 @@ import { Device } from '@capacitor/device';
     styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
+    isWeb: boolean;
     API: string = _.API_URL;
 
     sqliteUsers = [];
@@ -22,12 +23,16 @@ export class ProfilePage implements OnInit {
     constructor(
         private router: Router,
         private platform: Platform,
+        private location: Location,
         private sqliteService: SqliteService
-    ) { }
+    ) {
+        this.isWeb = false;
+    }
 
     ngOnInit() {
         this.platform.ready().then(async () => {
             const info = await Device.getInfo();
+            this.isWeb = info.platform == 'web';
 
             this.sqliteService.init();
 
@@ -76,5 +81,9 @@ export class ProfilePage implements OnInit {
             address: complete_address
         };
         console.log('user', this.user);
+    }
+
+    back() {
+        this.location.back();
     }
 }
