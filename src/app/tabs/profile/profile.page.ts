@@ -66,6 +66,12 @@ export class ProfilePage implements OnInit {
     }
 
     logout() {
-        this.router.navigate(['/auth/login'])
+        window.localStorage.removeItem('access_token');
+        window.localStorage.removeItem('image');
+        window.localStorage.removeItem('first_name');
+        window.localStorage.removeItem('last_name');
+        window.localStorage.removeItem('role_pk');
+        window.localStorage.removeItem('seller_pk');
+        this.router.navigate(['/auth/login']);
     }
 }
