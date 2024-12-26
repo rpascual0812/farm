@@ -76,7 +76,6 @@ export class FutureCropsPage implements OnInit {
 
         const response: HttpResponse = await CapacitorHttp.get(options);
         response.data.data.forEach((product: any) => {
-            console.log(product);
             const user_image = product.user_document.filter((doc: any) => doc.type === 'profile_photo');
             const product_image = product.product_documents.filter((doc: any) => doc.type === 'slide');
             this.products.push({
@@ -94,7 +93,6 @@ export class FutureCropsPage implements OnInit {
                 currency_symbol: product.country.currency_symbol,
                 product_image: product_image.length > 0 ? this.API + '/' + product_image[0].document.path : this.API + '/' + 'assets/images/defaults/no-product-image.png',
             });
-            console.log(this.products);
         });
     }
 

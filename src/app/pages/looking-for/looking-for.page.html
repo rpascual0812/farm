@@ -3,7 +3,7 @@
         <ion-row>
             <ion-col *ngFor="let product of products; let i = index;">
                 <ion-card style="border-radius: 15px;">
-                    <ion-card-content [ngStyle]="{ 'width' : '380px' }">
+                    <ion-card-content [ngStyle]="{ 'width' : '350px' }">
                         <ion-grid>
                             <ion-row>
                                 <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
@@ -12,16 +12,16 @@
                                             onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
                                     </ion-avatar>
                                 </ion-col>
-                                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                                <ion-col class="no-padding" style="padding: 0 0 0 6px !important;">
                                     <ion-grid style="margin: 0px !important; padding: 0px !important;">
                                         <ion-row>
-                                            <ion-col class="no-padding">
+                                            <ion-col class="no-padding" style="padding: 0 0 0 2px !important;">
                                                 {{product.seller_name}}
                                             </ion-col>
                                         </ion-row>
                                         <ion-row>
                                             <ion-col class="no-padding"
-                                                style="padding: 0 0 0 5px !important; text-align: left; font-size: 12px;">
+                                                style="padding: 0 0 0 2px !important; text-align: left; font-size: 12px;">
                                                 {{product.date_created | date : 'MMM dd, YYYY'}}
                                             </ion-col>
                                         </ion-row>

@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { Device } from '@capacitor/device';
 import { SqliteService } from '../services/sqlite.service';
 import { SQLiteUser } from '../interfaces/sqlite-user.interface';
+import { localStorageUser } from '../interfaces/localStorage-user.interface';
 
 @Component({
     selector: 'app-tabs',
@@ -10,34 +11,28 @@ import { SQLiteUser } from '../interfaces/sqlite-user.interface';
     styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
-    public users: SQLiteUser[];
+    public user: localStorageUser;
 
     constructor(
         private platform: Platform,
         private sqliteService: SqliteService
     ) {
-        this.users = [];
+        this.user = {
+            access_token: '',
+            image: '',
+            first_name: '',
+            last_name: '',
+            role_pk: null,
+            seller_pk: null,
+        };
     }
 
     async ngOnInit() {
-        this.platform.ready().then(async () => {
-            const info = await Device.getInfo();
-
-            this.sqliteService.init();
-
-            // bad but working for now
-            setTimeout(() => {
-                this.SQLiteRead();
-            }, 2000);
-        });
+        this.getLocalStorageUser();
     }
 
-    SQLiteRead() {
-        this.sqliteService.read().then((users: any) => {
-            this.users = users;
-            console.log('tab users', users);
-        }).catch(err => {
-            console.error(err);
-        })
+    getLocalStorageUser() {
+        this.user.access_token = window.localStorage.getItem('access_token') ?? '';
+        this.user.image = window.localStorage.getItem('image') ?? '';
     }
 }

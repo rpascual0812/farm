@@ -13,7 +13,6 @@ import { Device } from '@capacitor/device';
     styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-    isWeb: boolean;
     API: string = _.API_URL;
 
     sqliteUsers = [];
@@ -25,40 +24,21 @@ export class ProfilePage implements OnInit {
         private platform: Platform,
         private location: Location,
         private sqliteService: SqliteService
-    ) {
-        this.isWeb = false;
-    }
+    ) { }
 
     ngOnInit() {
-        this.platform.ready().then(async () => {
-            const info = await Device.getInfo();
-            this.isWeb = info.platform == 'web';
-
-            this.sqliteService.init();
-
-            // bad but working for now
-            setTimeout(() => {
-                this.SQLiteRead();
-            }, 2000);
-        });
+        this.getLocalStorageUser();
     }
 
-    SQLiteRead() {
-        this.sqliteService.read().then((users: any) => {
-            this.sqliteUsers = users;
-            if (users.length > 0) {
-                const user_data = JSON.parse(atob(users[0].access_token.split('.')[1]));
-                this.accessToken = users[0].access_token;
-                // const exp = (JSON.parse(atob(users[0].access_token.split('.')[1]))).exp;
+    getLocalStorageUser() {
+        this.accessToken = window.localStorage.getItem('access_token') ?? '';
 
-                this.fetch(user_data.sub);
-            }
-            else {
-                this.router.navigate(['/auth/login'])
-            }
-        }).catch(err => {
-            console.error(err);
-        })
+        if (this.accessToken) {
+            const user_data = JSON.parse(atob(this.accessToken.split('.')[1]));
+            this.fetch(user_data.sub);
+        } else {
+            this.router.navigate(['/auth/login'])
+        }
     }
 
     async fetch(accountPk: number) {
@@ -70,7 +50,6 @@ export class ProfilePage implements OnInit {
         };
 
         const response: HttpResponse = await CapacitorHttp.get(options);
-
         const image = response.data.user.user_document.filter((doc: any) => doc.type === 'profile_photo');
         const address = response.data.user.user_addresses.length > 0 ? (response.data.user.user_addresses.length > 1 ? response.data.user.user_addresses.filter((address: any) => address.default === true) : response.data.user.user_addresses[0]) : '';
 
@@ -80,10 +59,13 @@ export class ProfilePage implements OnInit {
             image: image.length > 0 ? this.API + '/' + image[0].document.path : 'https://ionicframework.com/docs/img/demos/avatar.svg',
             address: complete_address
         };
-        console.log('user', this.user);
     }
 
     back() {
         this.location.back();
+    }
+
+    logout() {
+        this.router.navigate(['/auth/login'])
     }
 }

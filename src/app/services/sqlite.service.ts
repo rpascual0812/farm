@@ -26,6 +26,7 @@ export class SqliteService {
     }
 
     async init() {
+        console.log('SQLite Init');
         const info = await Device.getInfo();
         const sqlite = CapacitorSQLite as any;
 
@@ -53,7 +54,7 @@ export class SqliteService {
             this.downloadDatabase();
         } else {
             this.dbName = await this.getDbName();
-
+            console.log(this.dbName);
             await CapacitorSQLite.createConnection({ database: this.dbName });
             await CapacitorSQLite.open({ database: this.dbName })
             this.dbReady.next(true);

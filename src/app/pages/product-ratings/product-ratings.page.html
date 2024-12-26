@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="margin: 0 0 0 0;">
+        <ion-grid style="padding: 0 0 !important;">
+            <ion-row style="padding: 0 0 0 0;">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding: 0 0 0 0;">
+                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 15px !important; font-size: 18px;">
+                    Ratings | {{product.name}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <div class="row" style="margin: 10px 0 0 0;">
+            <div class="col positive-bg stable" *ngFor="let rating of product.product_ratings; let i = index;"
+                style="margin: 5px 0 5px 0;">
+                <ion-card-content [ngStyle]="{ 'width' : screen.width, 'background-color': 'white' }">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                                <ion-avatar style="width: 30px !important; height: 30px !important;">
+                                    <img alt="Silhouette of a person's head" [src]="rating.image"
+                                        onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                                </ion-avatar>
+                            </ion-col>
+                            <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                                <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                    <ion-row>
+                                        <ion-col class="no-padding">
+                                            {{rating.user.first_name}} {{rating.user.last_name}}
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col style="padding: 0 !important;">
+                                            <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                                <ion-row>
+                                                    <ion-col size="auto" class="no-padding">
+                                                        <app-ratings [rating]="rating.rating" [zoom]="1"></app-ratings>
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-grid>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin: 0 0 0 0;">
+                            <ion-col size="auto" class="no-padding ion-text-justify"
+                                style="font-size: 12px; padding: 10px 0 0 0 !important;">
+                                {{rating.message}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-card-content>
+            </div>
+        </div>
+    </div>
+</ion-content>

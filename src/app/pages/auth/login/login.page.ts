@@ -8,6 +8,7 @@ import { Device } from '@capacitor/device';
 import { SqliteService } from 'src/app/services/sqlite.service';
 import { SQLiteUser } from 'src/app/interfaces/sqlite-user.interface';
 import { Router } from '@angular/router';
+import { localStorageUser } from 'src/app/interfaces/localStorage-user.interface';
 
 @Component({
     selector: 'app-login',
@@ -41,22 +42,10 @@ export class LoginPage implements OnInit {
     }
 
     async ngOnInit() {
-        this.platform.ready().then(async () => {
-            const info = await Device.getInfo();
-            this.isWeb = info.platform == 'web';
-
-            this.sqliteService.init();
-            this.sqliteService.dbReady.subscribe((load: any) => {
-                this.load = true;
-            })
-
-            this.load = true;
-
-            // bad but working for now
-            setTimeout(() => {
-                this.SQLiteRead();
-            }, 2000);
-        });
+        let access_token = window.localStorage.getItem('access_token');
+        if (access_token) {
+            // this.router.navigate(['/tabs/home']);
+        }
     }
 
     async login() {
@@ -76,7 +65,7 @@ export class LoginPage implements OnInit {
                 const user = response.data.user;
                 const image = user.user_document.filter((doc: any) => doc.type === 'profile_photo');
                 user.image = this.API + '/' + image[0].document.path;
-                this.SQLiteCreate(user);
+                this.setLocalStorage(user);
             }
 
         } catch (error) {
@@ -96,24 +85,17 @@ export class LoginPage implements OnInit {
         // console.log(response);
     }
 
-    SQLiteCreate(user: SQLiteUser) {
-        this.sqliteService.create(user).then((changes) => {
-            this.user = '';
-            this.SQLiteRead();
+    setLocalStorage(user: localStorageUser) {
+        window.localStorage.setItem('access_token', user.access_token);
+        window.localStorage.setItem('image', user.image);
+        window.localStorage.setItem('first_name', user.first_name);
+        window.localStorage.setItem('last_name', user.last_name);
+        window.localStorage.setItem('role_pk', user.role_pk?.toString() ?? '');
+        window.localStorage.setItem('seller_pk', user.seller_pk?.toString() ?? '');
 
-            this.router.navigate(['/tabs/home'])
-
-        }).catch(err => {
-            console.error(err);
-        })
-    }
-
-    SQLiteRead() {
-        this.sqliteService.read().then((users: any) => {
-            this.users = users;
-            console.log('users', users);
-        }).catch(err => {
-            console.error(err);
-        })
+        let access_token = window.localStorage.getItem('access_token');
+        if (access_token) {
+            this.router.navigate(['/tabs/home']);
+        }
     }
 }

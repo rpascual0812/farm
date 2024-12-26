@@ -32,7 +32,7 @@
             <ion-row>
                 <ion-col *ngFor="let product of products; let i = index;">
                     <ion-card style="border-radius: 15px;">
-                        <ion-card-content [ngStyle]="{ 'width' : '380px' }">
+                        <ion-card-content [ngStyle]="{ 'width' : '380px' }" style="padding: 0 !important;">
                             <ion-grid>
                                 <ion-row>
                                     <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
@@ -49,8 +49,9 @@
                                                 </ion-col>
                                             </ion-row>
                                             <ion-row class="no-padding">
-                                                <ion-col style="padding: 0 !important;">
-                                                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                                <ion-col style="padding: 0 15px 0 0 !important;">
+                                                    <ion-grid
+                                                        style="margin: 0px !important; padding: 0 15px 0 0 !important;">
                                                         <ion-row>
                                                             <ion-col size="auto" class="no-padding">
                                                                 <ion-icon name="location-outline"></ion-icon>
@@ -65,7 +66,7 @@
                                             </ion-row>
                                         </ion-grid>
                                     </ion-col>
-                                    <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                                    <ion-col size="auto" class="no-padding" style="padding: 0 15px 0 5px !important;">
                                         <ion-grid>
                                             <ion-row>
                                                 <ion-col size="auto">
@@ -86,29 +87,33 @@
                                     </ion-col>
                                 </ion-row>
 
-                                <ion-row style="margin: 10px 0 0 0;">
-                                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                                <ion-row style="margin: 10px 0 0 0; padding: 0px !important;">
+                                    <ion-grid style="margin: 0 0 0 -5px !important; padding: 0px !important;">
                                         <ion-row style="padding: 0 !important;">
-                                            <ion-col size="auto" class="no-padding">
+                                            <ion-col size="auto" class="no-padding"
+                                                style="padding: 0 0 0 5px !important;">
                                                 <span
                                                     style="font-size: 25px; font-weight: bold;">{{product.name}}</span>
                                             </ion-col>
                                         </ion-row>
                                         <ion-row>
-                                            <ion-col size="auto" class="no-padding" style="font-size: 12px;">
+                                            <ion-col size="auto" class="no-padding"
+                                                style="font-size: 12px; padding: 0 0 0 5px !important;">
                                                 <span style="font-weight: bold;">Quantity: </span>&nbsp;
                                                 {{product.quantity}}
                                                 {{product.measurement}}
                                             </ion-col>
                                         </ion-row>
                                         <ion-row>
-                                            <ion-col size="auto" class="no-padding" style="font-size: 12px;">
+                                            <ion-col size="auto" class="no-padding"
+                                                style="font-size: 12px; padding: 0 0 0 5px !important;">
                                                 <span style="font-weight: bold;">Estimated Date:</span>&nbsp;
                                                 {{product.date_available | date : 'MMM YYYY'}}
                                             </ion-col>
                                         </ion-row>
                                         <ion-row>
-                                            <ion-col size="auto" class="no-padding" style="font-size: 12px;">
+                                            <ion-col size="auto" class="no-padding"
+                                                style="font-size: 12px; padding: 0 0 0 5px !important;">
                                                 <span style="font-weight: bold;">Estimated Price:</span>&nbsp;
                                                 {{product.currency_symbol}} {{product.price_from}} per
                                                 {{product.measurement_symbol}}
@@ -116,8 +121,8 @@
                                         </ion-row>
                                         <ion-row style="margin: 5px 0 0 0;">
                                             <ion-col size="auto" class="no-padding">
-                                                <img style="height: 300px;" [style]="'width:' + screen.width + 'px'"
-                                                    alt="" [src]="product.product_image"
+                                                <img style="height: 300px;" [style]="'width: 100%'" alt=""
+                                                    [src]="product.product_image"
                                                     onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
                                             </ion-col>
                                         </ion-row>

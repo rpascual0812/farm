@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 enum COLORS {
     GREY = '#E0E0E0',
@@ -17,12 +17,15 @@ export class RatingsComponent implements OnInit {
     @Input() total: number;
     @Input() showTotal: boolean;
     @Input() zoom: number;
+    @Input() allowRate: boolean;
+    @Output() sendRate = new EventEmitter<number>();
 
     constructor() {
         this.rating = 0;
         this.total = 0;
         this.showTotal = false;
         this.zoom = 1.0;
+        this.allowRate = false;
     }
 
     ngOnInit() { }
@@ -36,4 +39,10 @@ export class RatingsComponent implements OnInit {
         }
     }
 
+    setStar(i: number) {
+        if (this.allowRate) {
+            this.rating = i;
+            this.sendRate.emit(i);
+        }
+    }
 }

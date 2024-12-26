@@ -9,10 +9,6 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
 import { HeaderModule } from 'src/app/components/header/header.module';
 
-import { defineCustomElements as jeepSqlite } from 'jeep-sqlite/loader';
-
-jeepSqlite(window);
-
 @NgModule({
     imports: [
         CommonModule,

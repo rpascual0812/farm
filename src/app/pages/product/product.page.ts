@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Platform } from '@ionic/angular';
 import * as _ from '../../utilities/globals';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 
 @Component({
     selector: 'app-product',
@@ -9,9 +11,12 @@ import * as _ from '../../utilities/globals';
     styleUrls: ['./product.page.scss'],
 })
 export class ProductPage implements OnInit {
+    productId: string | null = null;
+
     API: string = _.API_URL;
     sliders: any = [];
     product: any = {};
+    NOIMAGE: string = '';
 
     screen: any = {
         width: 0,
@@ -19,30 +24,59 @@ export class ProductPage implements OnInit {
     }
 
     constructor(
+        platform: Platform,
         private location: Location,
-        platform: Platform
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
     ) {
         platform.ready().then(() => {
             this.screen.width = platform.width();
             this.screen.height = platform.height();
         });
+
+        this.productId = this.activatedRoute.snapshot.paramMap.get('id');
+        this.NOIMAGE = this.API + '/assets/images/defaults/no-product-image.png'
     }
 
     ngOnInit() {
-        this.sliders = [
-            {
-                image: this.API + '/' + 'assets/images/uploads/documents/1723885588263.d93b5158-a9a1-481e-bf07-4949e8a476c9.7743b0d9-e376-43c3-96a0-b24daedc0d23.e27743f8-23c0-47ae-9381-f829b214ac6f.633728ae79d8cffe.png'
-            },
-            {
-                image: this.API + '/' + 'assets/images/uploads/documents/1723885588263.d93b5158-a9a1-481e-bf07-4949e8a476c9.7743b0d9-e376-43c3-96a0-b24daedc0d23.e27743f8-23c0-47ae-9381-f829b214ac6f.633728ae79d8cffe.png'
-            }
-        ]
-
         this.product.user_image = '';
+
+        this.fetch();
     }
 
     back() {
         this.location.back();
+    }
+
+    async fetch() {
+        const options = {
+            url: this.API + `/products/${this.productId}`
+        };
+
+        const response: HttpResponse = await CapacitorHttp.get(options);
+        if (response.data.status == 'success') {
+            this.product = response.data.data;
+
+            this.product.slides = [];
+            this.product.product_documents.forEach((doc: any) => {
+                this.product.slides.push(this.API + '/' + doc.document.path);
+            });
+
+            this.product.seller_name = this.product.user.first_name + ' ' + this.product.user.last_name;
+            this.product.address = this.product.user_addresses[0].address + " " + this.product.user_addresses[0].area.name;
+            this.product.seller_address = this.product.seller_addresses.length > 0 ? this.product.seller_addresses[0].address + " " + this.product.seller_addresses[0].area.name : this.product.user_addresses[0].address + " " + this.product.user_addresses[0].area.name;
+
+            console.log('product', this.product);
+        }
+
+    }
+
+    goToRatings() {
+        this.router.navigate(['/product/' + this.productId + '/ratings']);
+    }
+
+    rateProduct() {
+        this.router.navigate(['/product/' + this.productId + '/rate']);
     }
 
 }

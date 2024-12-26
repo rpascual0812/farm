@@ -12,18 +12,23 @@
     </div>
     <div>
         <ion-card class="card-slider">
-            <swiper-container [pagination]="true">
-                <swiper-slide *ngFor="let slider of sliders">
-                    <img *ngIf="slider.image" [src]="slider.image" style="width: 430px; height: 350px;" />
+            <swiper-container [pagination]="true" *ngIf="product.slides && product.slides.length > 0">
+                <swiper-slide *ngFor="let slide of product.slides">
+                    <img *ngIf="slide" [src]="slide" style="width: 430px; height: 350px;"
+                        onerror="this.src='https://st.depositphotos.com/2934765/53192/v/600/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg'" />
                 </swiper-slide>
             </swiper-container>
+            <img *ngIf="product.slides.length == 0"
+                src="https://st.depositphotos.com/2934765/53192/v/600/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg"
+                style="width: 430px; height: 350px;" />
         </ion-card>
     </div>
     <div style="margin: 20px 0 0 0;">
-        <ion-grid class="ion-text-center">
-            <ion-row class="header-row">
+        <ion-grid class="ion-text-center custom-grid">
+            <ion-row class=" header-row" style="padding: 0 10px 0 0;">
                 <ion-col style="text-align: left;">
-                    <ion-title style="font-weight: bold; color: black; padding: 10px 0 0 0;">Name</ion-title>
+                    <ion-title
+                        style="font-weight: bold; color: black; padding: 10px 0 0 0; font-size: 20px;">{{product.name}}</ion-title>
                 </ion-col>
                 <ion-col size="auto">
                     <ion-button size="small" fill="outline" color="success" style="margin: 0 0 0 0 !important;">
@@ -38,19 +43,20 @@
             </ion-row>
             <ion-row class="header-row">
                 <ion-col style="text-align: left;">
-                    <ion-title class="title-primary" style="font-size: 25px; padding: 0 0 0 0;">P
-                        100.00</ion-title>
+                    <ion-title class="title-primary"
+                        style="font-size: 25px; padding: 0 0 0 0;">{{product.country?.currency_symbol}}
+                        {{product.price_from}}</ion-title>
                 </ion-col>
             </ion-row>
             <ion-row class="header-row" style="margin: 10px 0 0 0;">
                 <ion-col style="text-align: left;" class="no-padding">
-                    <ion-title class="text-grey" style="font-size: 20px; padding: 0 0 0 0;">View
+                    <ion-title class="text-grey" style="font-size: 18px; padding: 0 0 0 0;">View
                         Ratings</ion-title>
                 </ion-col>
             </ion-row>
             <ion-row class="header-row">
-                <ion-col style="text-align: left;" class="no-padding">
-                    <app-ratings [rating]="3" [total]="265" [zoom]="2.0" [showTotal]="true"></app-ratings>
+                <ion-col style="text-align: left;" class="no-padding" (click)="goToRatings()">
+                    <app-ratings [rating]="3" [total]="265" [zoom]="1.8" [showTotal]="true"></app-ratings>
                 </ion-col>
             </ion-row>
             <ion-row style="margin: 10px 0 0 0;">
@@ -59,13 +65,14 @@
                         <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
                             <ion-avatar style="width: 35px !important; height: 35px !important;">
                                 <img alt="" [src]="product.user_image"
-                                    onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                                    onerror="this.src=`https://ionicframework.com/docs/img/demos/avatar.svg`" />
                             </ion-avatar>
                         </ion-col>
-                        <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                        <ion-col class="no-padding" style="padding: 0 0 0 0 !important;">
                             <ion-grid style="margin: 0px !important; padding: 0px !important;">
                                 <ion-row>
-                                    <ion-col class="no-padding">
+                                    <ion-col class="no-padding"
+                                        style="text-align: left; padding: 0 0 0 15px !important;">
                                         {{product.seller_name}}
                                     </ion-col>
                                 </ion-row>
@@ -76,7 +83,8 @@
                                                 <ion-col size="auto" class="no-padding">
                                                     <ion-icon name="location-outline"></ion-icon>
                                                 </ion-col>
-                                                <ion-col class="no-padding" style="text-align: left; font-size: 12px;">
+                                                <ion-col class="no-padding"
+                                                    style="text-align: left; font-size: 12px; padding: 2px 0 0 0 !important;">
                                                     {{product.address}}
                                                 </ion-col>
                                             </ion-row>
@@ -105,6 +113,69 @@
 
 
                 </ion-grid>
+            </ion-row>
+            <ion-row class="header-row">
+                <ion-col style="text-align: center;" class="no-padding background-grey"
+                    style="padding: 20px 0 !important;">
+                    <ion-button size="small" fill="solid" color="success" style="margin: 0 0 0 0 !important; "
+                        (click)="rateProduct()">
+                        Rate Product
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="header-row">
+                <ion-col class="no-padding" style="border-bottom: solid 1px #f5f5f5;">
+                    <ion-row class="header-row">
+                        <ion-col class="no-padding" style="padding: 10px 5px !important; text-align: left;">
+                            <ion-title style="font-size: 18px; padding: 0 0 0 0;">Product
+                                Details</ion-title>
+                        </ion-col>
+                        <ion-col class="no-padding" style="padding: 10px 0 !important; text-align: left;">
+
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="header-row">
+                <ion-col class="no-padding">
+                    <ion-row class="header-row">
+                        <ion-col class="no-padding" style="padding: 10px 5px !important; text-align: left;">
+                            <ion-title class="text-grey" style="font-size: 18px; padding: 0 0 0 0;">Product
+                                Posted </ion-title>
+                        </ion-col>
+                        <ion-col class="no-padding" style="padding: 10px 0 !important; text-align: left;">
+                            <span style="font-weight: bold;">{{product.date_created | date}}</span>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="header-row">
+                <ion-col style="text-align: center;" class="no-padding background-grey"
+                    style="padding: 0 0 !important;">
+                    <ion-row class="header-row" class="background-primary">
+                        <ion-col class="no-padding" style="padding: 10px 10px !important; text-align: left;">
+                            <ion-title class="text-grey" style="font-size: 18px; padding: 0 0 0 0;">Ships From
+                            </ion-title>
+                        </ion-col>
+                        <ion-col class="no-padding" style="padding: 10px 0 !important; text-align: left;">
+                            <span style="font-weight: bold;">{{product.seller_address}}</span>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="header-row">
+                <ion-col class="no-padding">
+                    <ion-row class="header-row">
+                        <ion-col class="no-padding ion-text-justify"
+                            style="padding: 10px 5px !important; text-align: left;">
+                            {{product.description}}
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>

@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="margin: 0 0 0 0;"></div>
+    <ion-grid style="padding: 0 0 !important;">
+        <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-between">
+            <ion-col size="auto" class="no-padding">
+                <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+            </ion-col>
+            <ion-col size="auto" class="no-padding">
+                <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="save()">Submit</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row style="padding: 0 0 0 0;">
+            <ion-col size="auto" class="no-padding" style="padding: 0 0 0 15px !important; font-size: 18px;">
+                Rate Product
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div class="row" style="margin: 10px 0 0 0;">
+        <div class="col positive-bg stable" style="margin: 5px 0 0 0; padding: 20px;">
+            <img [src]="product.image"
+                onerror="this.src='https://st.depositphotos.com/2934765/53192/v/600/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg'"
+                style="width: 100%;height: 250px;" />
+        </div>
+        <ion-grid style="margin: 0px !important; padding: 0px !important;">
+            <ion-row style="padding-bottom: 10px;">
+                <ion-col class="no-padding ion-text-center" style="font-size: 20px;">
+                    {{product.name}}
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="no-padding ion-text-center" style="font-size: 20px; border-bottom: solid 2px #eee;">
+
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding-top: 10px;">
+                <ion-col class="ion-text-center" style="padding: 0 !important;">
+                    <app-ratings [rating]="0" [zoom]="2.5" [allowRate]="true"
+                        (sendRate)="rateChanged($event)"></app-ratings>
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding-top: 10px;">
+                <ion-col class="ion-text-center" style="padding: 10px !important;">
+                    <ion-textarea fill="outline" placeholder="Share you experience and help others make better choices!"
+                        [counter]="true" maxlength="150" [autoGrow]="true" rows="6"
+                        [(ngModel)]="form.message"></ion-textarea>
+                </ion-col>
+            </ion-row>
+            <ion-row style="padding-top: 10px;">
+                <ion-col class="ion-text-left" style="padding: 10px !important;">
+                    <ion-checkbox labelPlacement="end" [(ngModel)]="form.anonymous">Leave you review
+                        anonymously</ion-checkbox>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <ion-toast [isOpen]="toast.show" [message]="toast.message" [duration]="toast.duration"></ion-toast>
+</ion-content>

@@ -214,7 +214,7 @@
                         Documentation
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="logout()">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Log out
                     </ion-label>
@@ -222,5 +222,4 @@
             </ion-list>
         </div>
     </div>
-    <jeep-sqlite *ngIf="isWeb"></jeep-sqlite>
 </ion-content>

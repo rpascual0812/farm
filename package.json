@@ -74,5 +74,8 @@
         "karma-jasmine-html-reporter": "~2.1.0",
         "typescript": "~5.4.0"
     },
+    "browser": {
+        "crypto": false
+    },
     "description": "An Ionic project"
 }
