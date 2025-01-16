@@ -1,0 +1,105 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="margin: 0 0 0 0;">
+        <ion-grid style="padding: 0 0 !important;">
+            <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-between">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+                </ion-col>
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: black;" (click)="save()">Submit</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div style="margin: 0 0 0 0;">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="no-padding title" style="padding: 0 0 0 5px !important;">
+                    Create Looking For Post
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+            <ion-row>
+                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 20px !important;">
+                    <ion-avatar style="width: 40px !important; height: 40px !important;">
+                        <img alt="" [src]="user.profile_photo"
+                            onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                    </ion-avatar>
+                </ion-col>
+                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                        <ion-row>
+                            <ion-col class="no-padding" style="color: rgb(34, 33, 33); font-weight: bold;">
+                                {{user.first_name}} {{user.last_name}}
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="no-padding">
+                            <ion-col style="padding: 0 15px 0 0 !important;">
+                                <ion-grid style="margin: 0px !important; padding: 0 15px 0 0 !important;">
+                                    <ion-row>
+                                        <ion-col size="auto" class="no-padding">
+                                            <ion-icon name="location-outline"></ion-icon>
+                                        </ion-col>
+                                        <ion-col class="no-padding" style="text-align: left; font-size: 14px;">
+                                            {{user.address}}
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+        <ion-grid style="padding: 0 0 !important; margin: 20px 0 0 0 !important;">
+            <ion-row>
+                <ion-col>
+                    <ion-title>What are you looking for?</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-row>
+                        <ion-col>
+                            <ion-title>Quantity</ion-title>
+                        </ion-col>
+                        <ion-col>
+                            <ion-title>Price Range</ion-title>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col style="padding: 0 15px;">
+                            <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                        </ion-col>
+                        <ion-col style="padding: 0 15px;">
+                            <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-title>Attach Display Photo</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-button expand="block" color="success" size="large">+ Add
+                        Photo</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

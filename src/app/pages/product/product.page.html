@@ -18,7 +18,7 @@
                         onerror="this.src='https://st.depositphotos.com/2934765/53192/v/600/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg'" />
                 </swiper-slide>
             </swiper-container>
-            <img *ngIf="product.slides.length == 0"
+            <img *ngIf="product.slides?.length == 0"
                 src="https://st.depositphotos.com/2934765/53192/v/600/depositphotos_531920820-stock-illustration-photo-available-vector-icon-default.jpg"
                 style="width: 430px; height: 350px;" />
         </ion-card>

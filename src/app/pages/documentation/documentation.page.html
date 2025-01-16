@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+    <div style="padding: 0 0 20px 0 !important">
+        <div style="margin: 0 0 0 0;">
+            <ion-grid style="padding: 0 0 !important;">
+                <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-between">
+                    <ion-col size="auto" class="no-padding">
+                        <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid style="padding: 0 0 !important;">
+                <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-center">
+                    <ion-col size="auto" class="no-padding title">
+                        Frequently Asked Questions
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <ion-grid style="padding: 0 0 !important;">
+                <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-center">
+                    <ion-col class="no-padding title">
+                        <ion-accordion-group expand="inset">
+                            <ion-accordion value="first">
+                                <ion-item slot="header">
+                                    <ion-label>Disclaimer</ion-label>
+                                </ion-item>
+                                <div class="ion-padding" slot="content">First Content</div>
+                            </ion-accordion>
+                            <ion-accordion value="second">
+                                <ion-item slot="header">
+                                    <ion-label>Legal Conditions</ion-label>
+                                </ion-item>
+                                <div class="ion-padding" slot="content">Second Content</div>
+                            </ion-accordion>
+                            <ion-accordion value="third">
+                                <ion-item slot="header">
+                                    <ion-label>Terms and Conditions</ion-label>
+                                </ion-item>
+                                <div class="ion-padding" slot="content">Third Content</div>
+                            </ion-accordion>
+                        </ion-accordion-group>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>

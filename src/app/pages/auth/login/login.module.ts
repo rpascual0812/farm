@@ -11,6 +11,7 @@ import { HeaderModule } from 'src/app/components/header/header.module';
 
 import { defineCustomElements as jeepSqlite } from 'jeep-sqlite/loader';
 import { HttpClient } from '@angular/common/http';
+import { IonInput } from '@ionic/angular/standalone';
 
 jeepSqlite(window);
 
@@ -20,7 +21,8 @@ jeepSqlite(window);
         FormsModule,
         IonicModule,
         LoginPageRoutingModule,
-        HeaderModule
+        HeaderModule,
+        IonInput
     ],
     declarations: [LoginPage],
     schemas: [

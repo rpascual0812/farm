@@ -1,0 +1,97 @@
+<ion-content [fullscreen]="true">
+    <div style="margin: 0 0 0 0;">
+        <ion-grid style="padding: 0 0 !important;">
+            <ion-row style="padding: 0 0 0 0;" class="ion-justify-content-between">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: rgb(128, 126, 126);" (click)="back()">Back</ion-button>
+                </ion-col>
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: black;" (click)="save()">Submit</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div style="margin: 0 0 0 0;">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="no-padding title" style="padding: 0 0 0 5px !important;">
+                    Upload Product
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <ion-grid style="padding: 0 0 !important; margin: 20px 0 0 0 !important;">
+            <ion-row>
+                <ion-col>
+                    <ion-title class="form-label">Product Name</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-row>
+                        <ion-col>
+                            <ion-title class="form-label">Price</ion-title>
+                        </ion-col>
+                        <ion-col>
+                            <ion-title class="form-label">Stock</ion-title>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col style="padding: 0 15px;">
+                            <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                        </ion-col>
+                        <ion-col style="padding: 0 15px;">
+                            <ion-input fill="outline" labelPlacement="fixed" placeholder="" class="custom"></ion-input>
+                        </ion-col>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-title class="form-label">Product Description</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-textarea label="" labelPlacement="floating" fill="outline" placeholder="" [autoGrow]="true"
+                        [attr.rows]=5></ion-textarea>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-title class="form-label">Category</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-select aria-label="Fruit" interface="popover" label="" label-placement="floating"
+                        fill="outline">
+                        <ion-select-option [value]="category"
+                            *ngFor="let category of categories; let i = index;">{{category}}</ion-select-option>
+                    </ion-select>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col>
+                    <ion-title>Attach Product Photo</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col style="padding: 0 20px;">
+                    <ion-button expand="full" color="success" size="large" class="full-width">+ Add
+                        Photo</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

@@ -1,0 +1,132 @@
+<app-header></app-header>
+
+<ion-content>
+    <div class="profile"
+        style="background-image: url('{{user.seller_background_photo}}'); background-size: cover; background-repeat: no-repeat; background-position: center center;">
+        <ion-grid style="padding: 10px 0 !important;">
+            <ion-row style="padding: 0 0 0 0;">
+                <ion-col size="auto" class="no-padding">
+                    <ion-button fill="clear" style="color: white;" (click)="back()">Back</ion-button>
+                </ion-col>
+                <ion-col></ion-col>
+            </ion-row>
+            <ion-row class="text-white" style="margin: 10px 0 0 0;">
+                <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
+                    <ion-avatar style="width: 50px !important; height: 50px !important;">
+                        <img alt="Silhouette of a person's head" [src]="user.profile_photo"
+                            onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
+                    </ion-avatar>
+                </ion-col>
+                <ion-col class="no-padding" style="padding: 0 0 0 5px !important; display: flex !important;">
+                    <ion-grid style="margin: 0px !important; padding: 0px !important;">
+                        <ion-row>
+                            <ion-col class="no-padding title-white">
+                                {{user.first_name}} {{user.last_name}}
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="form-label-white">
+                            <ion-col class="no-padding">
+                                Following {{user.following_count}}
+                            </ion-col>
+                            <ion-col class="no-padding"
+                                style="border-left: solid 1px #fff !important; padding: 0 0 0 10px !important;">
+                                Followers {{user.follower_count}}
+                            </ion-col>
+                            <ion-col class="no-padding">
+
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="form-label-white" style="margin: 10px 0 0 0;">
+                            <ion-col class="no-padding">
+                                <ion-button size="small" color="light" class="form-label">View Shop</ion-button>
+                            </ion-col>
+                            <ion-col class="no-padding">
+                                <ion-button size="small" color="light" class="form-label">See Rating</ion-button>
+                            </ion-col>
+                            <ion-col class="no-padding">
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+            </ion-row>
+            <ion-row class=" text-white">
+                <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div>
+        <ion-segment [value]="activeView" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="products">
+                <ion-label>Products</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="future_crops">
+                <ion-label>Future Crops</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+
+        <div *ngIf="activeView == 'products'"
+            style="background-color: white; padding: 0 !important; margin: 10px 0 0 0;">
+            <ion-grid style="padding: 0 !important;">
+                <ion-row class="text-white" style="margin: 10px 0 0 0;">
+                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important; display: flex !important;">
+                        <ion-grid style="margin: 0px !important; padding: 0px !important;">
+
+                            <ion-row class="form-label">
+                                <ion-col class="no-padding" style="padding: 10px 20px !important;">
+                                    <ion-select aria-label="Fruit" interface="popover" label="Sort by Category"
+                                        label-placement="floating" fill="outline">
+                                        <ion-select-option [value]="category"
+                                            *ngFor="let category of categories; let i = index;">{{category}}</ion-select-option>
+                                    </ion-select>
+                                </ion-col>
+                                <ion-col class="no-padding" style="padding: 15px 20px !important;">
+                                    <ion-button color="success" size="medium" (click)="openAddProduct()">Add
+                                        Product</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+                <ion-row class=" text-white">
+                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div *ngIf="activeView == 'future_crops'">
+            <ion-grid style="padding: 0 !important;">
+                <ion-row class="text-white" style="margin: 10px 0 0 0;">
+                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important; display: flex !important;">
+                        <ion-grid style="margin: 0px !important; padding: 0px !important;">
+
+                            <ion-row class="form-label">
+                                <ion-col class="no-padding" style="padding: 10px 20px !important;">
+                                    <ion-select aria-label="Fruit" interface="popover" label="Sort by Category"
+                                        label-placement="floating" fill="outline">
+                                        <ion-select-option [value]="category"
+                                            *ngFor="let category of categories; let i = index;">{{category}}</ion-select-option>
+                                    </ion-select>
+                                </ion-col>
+                                <ion-col class="no-padding" style="padding: 15px 20px !important;">
+                                    <ion-button color="success" size="medium" (click)="openAddFuturCrops()">Add
+                                        Future Crops</ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-col>
+                </ion-row>
+                <ion-row class=" text-white">
+                    <ion-col class="no-padding" style="padding: 0 0 0 5px !important;">
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+    </div>
+</ion-content>

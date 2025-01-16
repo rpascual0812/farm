@@ -18,7 +18,7 @@
             <ion-row class="text-white">
                 <ion-col size="auto" class="no-padding" style="padding: 0 0 0 5px !important;">
                     <ion-avatar style="width: 50px !important; height: 50px !important;">
-                        <img alt="Silhouette of a person's head" [src]="user.image"
+                        <img alt="Silhouette of a person's head" [src]="user.profile_photo"
                             onerror="this.src='https://ionicframework.com/docs/img/demos/avatar.svg'" />
                     </ion-avatar>
                 </ion-col>
@@ -37,7 +37,7 @@
                             <ion-col class="no-padding" style="padding: 10px 5px !important;">
                                 <ion-row>
                                     <ion-col class="no-padding">
-                                        100
+                                        {{user.following_count}}
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
@@ -49,7 +49,7 @@
                             <ion-col class="no-padding" style="padding: 10px 5px !important;">
                                 <ion-row>
                                     <ion-col class="no-padding">
-                                        100
+                                        {{user.follower_count}}
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
@@ -174,22 +174,27 @@
 
         <div>
             <ion-list>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('post_looking_for')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Post an Item You are Looking For
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('register_as_producer')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Register as Producer
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('producer_page')">
+                    <ion-label style="margin: 0 0 0 10px !important;">
+                        Go to Producer's Page
+                    </ion-label>
+                </ion-item>
+                <ion-item class="ion-no-padding" (click)="goto('recently_viewed')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Recently Viewed
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('faq')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Frequently Asked Questions
                     </ion-label>
@@ -199,17 +204,17 @@
                         Chat with Moderator
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('feedback')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Give Us Feedback
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('complaint')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         File a Complaint
                     </ion-label>
                 </ion-item>
-                <ion-item class="ion-no-padding">
+                <ion-item class="ion-no-padding" (click)="goto('documentation')">
                     <ion-label style="margin: 0 0 0 10px !important;">
                         Documentation
                     </ion-label>
@@ -222,4 +227,87 @@
             </ion-list>
         </div>
     </div>
+
+    <ion-modal #modal [isOpen]="isFeedbackModalOpen" class="feedback-modal">
+        <ng-template>
+            <ion-content>
+                <ion-toolbar>
+                    <ion-title>Give Us Feedback</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button color="light" (click)="isFeedbackModalOpen = false">Close</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+                <ion-list lines="none">
+                    <ion-item>
+                        Please let us know how to make Farm House better for you!
+                    </ion-item>
+                    <ion-item>
+                        <ion-textarea fill="outline" placeholder="Type a message..." [counter]="true" maxlength="300"
+                            [autoGrow]="true" rows="6" style="border: 0px !important;"></ion-textarea>
+                    </ion-item>
+                    <ion-item>
+                        <ion-buttons slot="start">
+                            <ion-button size="large" fill="clear" style="color: rgb(128, 126, 126);"
+                                (click)="back()">Cancel</ion-button>
+                        </ion-buttons>
+                        <ion-buttons slot="end">
+                            <ion-button size="large" fill="clear" style="color: rgb(128, 126, 126);"
+                                (click)="back()">Send</ion-button>
+                        </ion-buttons>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+    <ion-modal #modal [isOpen]="isComplaintModalOpen" class="complaint-modal">
+        <ng-template>
+            <ion-content>
+                <ion-toolbar>
+                    <ion-title>Give Us Feedback</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button color="light" (click)="isComplaintModalOpen = false">Close</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+                <ion-list lines="none">
+                    <ion-item>
+                        Choose type of complain
+                    </ion-item>
+                    <ion-item>
+                        <ion-input fill="outline" labelPlacement="fixed" placeholder="Subject"
+                            class="custom"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-textarea fill="outline" placeholder="Type a message..." [counter]="true" maxlength="300"
+                            [autoGrow]="true" rows="6" style="border: 0px !important;"></ion-textarea>
+                    </ion-item>
+                    <ion-item>
+                        <ion-radio-group value="products">
+                            <ion-radio value="products" labelPlacement="end" justify="start">Product
+                                Concerns</ion-radio> <br />
+                            <ion-radio value="transaction" labelPlacement="end" justify="start">Transaction
+                                Concerns</ion-radio> <br />
+                            <ion-radio value="producer" labelPlacement="end" justify="start">Producer
+                                Concerns</ion-radio> <br />
+                        </ion-radio-group>
+                    </ion-item>
+                    <ion-item>Attach Product Photo</ion-item>
+                    <ion-item>
+                        <ion-button expand="block" color="success" size="large" class="full-width">+ Add
+                            Photo</ion-button>
+                    </ion-item>
+                    <ion-item>
+                        <ion-buttons slot="start">
+                            <ion-button size="large" fill="clear" style="color: rgb(128, 126, 126);"
+                                (click)="back()">Cancel</ion-button>
+                        </ion-buttons>
+                        <ion-buttons slot="end">
+                            <ion-button size="large" fill="clear" style="color: rgb(128, 126, 126);"
+                                (click)="back()">Send</ion-button>
+                        </ion-buttons>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
 </ion-content>
